@@ -1,5 +1,14 @@
 spring:
   application:
     name: streaks
+
 server:
   port: 8087
+
+aws:
+  accessKey: YOUR_ACCESS_KEY
+  secretKey: YOUR_SECRET_KEY
+  region: us-east-1
+
+dynamodb:
+  endpoint: http://localhost:8000
