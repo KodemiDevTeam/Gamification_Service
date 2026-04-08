@@ -5,6 +5,7 @@ import com.gamification.streaks.repository.RewardRuleRepository;
 import com.gamification.streaks.service.RewardRuleService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -26,7 +27,7 @@ public class RewardRuleServiceImpl implements RewardRuleService {
         rule.setRewardType(rewardRuleDto.getRewardType());
         rule.setRewardValue(rewardRuleDto.getRewardValue());
         rule.setActive(rewardRuleDto.getActive());
-        rule.setCreatedAt(rewardRuleDto.getCreatedAt());
+        rule.setCreatedAt(LocalDateTime.now());
 
         rewardRuleRepository.save(rule);
 

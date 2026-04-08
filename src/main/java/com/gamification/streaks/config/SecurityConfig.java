@@ -2,7 +2,6 @@ package com.gamification.streaks.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,13 +24,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                // LEARNER and TRAINER can read
-                .requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("LEARNER", "TRAINER")
-                // only TRAINER can create, update, delete
-                .requestMatchers(HttpMethod.POST, "/api/**").hasRole("TRAINER")
-                .requestMatchers(HttpMethod.PUT, "/api/**").hasRole("TRAINER")
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("TRAINER")
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

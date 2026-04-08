@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: streaks
+
+server:
+  port: 8087
+
+aws:
+  accessKey: test
+  secretKey: test
+  region: us-east-1
+
+dynamodb:
+  endpoint: http://localhost:8000
+
+jwt:
+  secret: test-secret-key-that-is-long-enough-for-hmac-sha256

@@ -4,6 +4,8 @@ import com.gamification.streaks.model.StreakRecord;
 import com.gamification.streaks.repository.StreakRecordRepository;
 import com.gamification.streaks.service.StreakRecordService;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +24,8 @@ public class StreakRecordServiceImpl implements StreakRecordService {
         record.setLongestStreakCount(dto.getLongestStreakCount());
         record.setLastActiveData(dto.getLastActiveData());
         record.setStreakStatus(dto.getStreakStatus());
-        record.setCreatedAt(dto.getCreatedAt());
-        record.setUpdatedAt(dto.getUpdatedAt());
+        record.setCreatedAt(LocalDateTime.now());
+        record.setUpdatedAt(LocalDateTime.now());
         streakRecordRepository.save(record);
         return "Streak Record Created Successfully";
     }
@@ -54,7 +56,7 @@ public class StreakRecordServiceImpl implements StreakRecordService {
         existing.setLongestStreakCount(streakRecord.getLongestStreakCount());
         existing.setLastActiveData(streakRecord.getLastActiveData());
         existing.setStreakStatus(streakRecord.getStreakStatus());
-        existing.setUpdatedAt(streakRecord.getUpdatedAt());
+        existing.setUpdatedAt(LocalDateTime.now());
         streakRecordRepository.save(existing);
         return "Streak Record Updated Successfully";
     }

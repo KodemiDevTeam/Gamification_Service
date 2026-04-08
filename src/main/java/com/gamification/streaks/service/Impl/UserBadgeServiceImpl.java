@@ -6,6 +6,7 @@ import com.gamification.streaks.repository.UserBadgeRepository;
 import com.gamification.streaks.service.UserBadgeService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -26,7 +27,7 @@ public class UserBadgeServiceImpl implements UserBadgeService {
         userBadge.setUserId(userBadgeDto.getUserId());
         userBadge.setBadgeId(userBadgeDto.getBadgeId());
         userBadge.setBadgeName(userBadgeDto.getBadgeName());
-        userBadge.setCreatedData(userBadgeDto.getCreatedData());
+        userBadge.setCreatedData(LocalDateTime.now());
         userBadge.setXpAwarded(userBadgeDto.getXpAwarded());
         userBadgeRepository.save(userBadge);
         return "User Badge Created Successfully";

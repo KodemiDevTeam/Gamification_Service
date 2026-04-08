@@ -6,9 +6,12 @@ server:
   port: 8087
 
 aws:
-  accessKey: YOUR_ACCESS_KEY
-  secretKey: YOUR_SECRET_KEY
+  accessKey: arfbyg
+  secretKey: nw2vlj
   region: us-east-1
 
 dynamodb:
   endpoint: http://localhost:8000
+
+jwt:
+  secret: test-secret-key-that-is-long-enough-for-hmac-sha256

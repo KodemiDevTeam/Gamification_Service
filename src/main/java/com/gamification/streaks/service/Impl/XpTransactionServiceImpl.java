@@ -5,6 +5,7 @@ import com.gamification.streaks.repository.XpTransactionRepository;
 import com.gamification.streaks.service.XpTransactionService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class XpTransactionServiceImpl implements XpTransactionService {
         transaction.setXpSource(xpTransactionDto.getXpSource());
         transaction.setReferenceId(xpTransactionDto.getReferenceId());
         transaction.setDescription(xpTransactionDto.getDescription());
-        transaction.setCreatedAt(xpTransactionDto.getCreatedAt());
+        transaction.setCreatedAt(LocalDateTime.now().toString());
 
         xpTransactionRepository.save(transaction);
 

@@ -6,6 +6,7 @@ import com.gamification.streaks.repository.LeaderBoardRepository;
 import com.gamification.streaks.service.LeaderBoardService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -30,7 +31,7 @@ public class LeaderBoardServiceImpl implements LeaderBoardService {
         entry.setRank(leaderBoardEntryDto.getRank());
         entry.setPeriodStart(leaderBoardEntryDto.getPeriodStart());
         entry.setPeriodEnd(leaderBoardEntryDto.getPeriodEnd());
-        entry.setUpdatedAt(leaderBoardEntryDto.getUpdatedAt());
+        entry.setUpdatedAt(LocalDateTime.now());
 
         return leaderBoardRepository.save(entry);
     }
@@ -70,7 +71,7 @@ public class LeaderBoardServiceImpl implements LeaderBoardService {
         existing.setRank(leaderBoardEntry.getRank());
         existing.setPeriodStart(leaderBoardEntry.getPeriodStart());
         existing.setPeriodEnd(leaderBoardEntry.getPeriodEnd());
-        existing.setUpdatedAt(leaderBoardEntry.getUpdatedAt());
+        existing.setUpdatedAt(LocalDateTime.now());
 
         leaderBoardRepository.save(existing);
 

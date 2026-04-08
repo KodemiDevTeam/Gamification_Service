@@ -2,6 +2,8 @@ package com.gamification.streaks.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.gamification.streaks.config.LocalDateConverter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,8 +29,10 @@ public class Challenge {
     private Integer rewardXP;
     @DynamoDBAttribute(attributeName="rewardBadge")
     private String rewardBadge;
+    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
     @DynamoDBAttribute(attributeName="startData")
     private LocalDate startDate;
+    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
     @DynamoDBAttribute(attributeName="endDate")
     private LocalDate endDate;
     @DynamoDBAttribute(attributeName="Active")

@@ -5,6 +5,7 @@ import com.gamification.streaks.repository.BadgeRepository;
 import com.gamification.streaks.service.BadgeService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class BadgeServiceImpl implements BadgeService {
         badge.setXpReward(badgeDto.getXpReward());
         badge.setEligibilityRule(badgeDto.getEligibilityRule());
         badge.setActive(badgeDto.getActive());
-        badge.setCreatedAt(badgeDto.getCreatedAt());
+        badge.setCreatedAt(LocalDateTime.now());
         return badgeRepository.save(badge);
     }
 

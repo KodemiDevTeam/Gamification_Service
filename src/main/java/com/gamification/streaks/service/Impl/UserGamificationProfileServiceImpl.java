@@ -4,6 +4,7 @@ import com.gamification.streaks.model.UserGamificationProfile;
 import com.gamification.streaks.repository.UserGamificationProfileRepository;
 import com.gamification.streaks.service.UserGamificationProfileService;
 import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -24,8 +25,8 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         profile.setLastActivityData(dto.getLastActivityData());
         profile.setTotalBadges(dto.getTotalBadges());
         profile.setTotalReward(dto.getTotalReward());
-        profile.setCreatedAt(dto.getCreatedAt());
-        profile.setUpdatedAt(dto.getUpdatedAt());
+        profile.setCreatedAt(LocalDateTime.now());
+        profile.setUpdatedAt(LocalDateTime.now());
         return userGamificationProfileRepository.save(profile);
     }
     public String createUserGamificationProfile(UserGamificationProfile userGamificationProfile){
@@ -61,7 +62,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         existing.setLastActivityData(userGamificationProfile.getLastActivityData());
         existing.setTotalBadges(userGamificationProfile.getTotalBadges());
         existing.setTotalReward(userGamificationProfile.getTotalReward());
-        existing.setUpdatedAt(userGamificationProfile.getUpdatedAt());
+        existing.setUpdatedAt(LocalDateTime.now());
         userGamificationProfileRepository.save(existing);
         return "User Gamification Profile Updated Successfully";
     }

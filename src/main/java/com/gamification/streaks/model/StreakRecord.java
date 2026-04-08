@@ -2,7 +2,9 @@ package com.gamification.streaks.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.gamification.streaks.config.LocalDateConverter;
+import com.gamification.streaks.config.LocalDateTimeConverter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,12 +25,15 @@ public class StreakRecord {
     private Integer currentStreakCount;
     @DynamoDBAttribute(attributeName = "longestStreakCount")
     private Integer longestStreakCount;
+    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
     @DynamoDBAttribute(attributeName = "lastActiveData")
     private LocalDate lastActiveData;
     @DynamoDBAttribute(attributeName = "streakStatus")
     private String streakStatus;
+    @DynamoDBTypeConverted(converter = LocalDateTimeConverter.class)
     @DynamoDBAttribute(attributeName = "createdAt")
     private LocalDateTime createdAt;
+    @DynamoDBTypeConverted(converter = LocalDateTimeConverter.class)
     @DynamoDBAttribute(attributeName = "updatedAt")
     private LocalDateTime updatedAt;
 }

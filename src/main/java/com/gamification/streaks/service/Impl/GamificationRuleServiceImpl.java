@@ -5,6 +5,7 @@ import com.gamification.streaks.repository.GamificationRuleRepository;
 import com.gamification.streaks.service.GamificationRuleService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,8 +29,8 @@ public class GamificationRuleServiceImpl implements GamificationRuleService {
         rule.setEnabled(dto.getEnabled());
         rule.setVersion(dto.getVersion());
         rule.setAbCohort(dto.getAbCohort());
-        rule.setCreatedAt(dto.getCreatedAt());
-        rule.setUpdatedAt(dto.getUpdatedAt());
+        rule.setCreatedAt(LocalDateTime.now().toString());
+        rule.setUpdatedAt(LocalDateTime.now().toString());
         rule.setUpdatedBy(dto.getUpdatedBy());
         rule.setRollbackFromRuleId(dto.getRollbackFromRuleId());
 
@@ -59,7 +60,7 @@ public class GamificationRuleServiceImpl implements GamificationRuleService {
         existing.setEnabled(gamificationRule.getEnabled());
         existing.setVersion(gamificationRule.getVersion());
         existing.setAbCohort(gamificationRule.getAbCohort());
-        existing.setUpdatedAt(gamificationRule.getUpdatedAt());
+        existing.setUpdatedAt(LocalDateTime.now().toString());
         existing.setUpdatedBy(gamificationRule.getUpdatedBy());
         existing.setRollbackFromRuleId(gamificationRule.getRollbackFromRuleId());
 
