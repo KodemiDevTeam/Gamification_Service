@@ -13,8 +13,8 @@ pipeline {
         MAVEN_HOME = '/usr/share/maven'
         PATH = "/opt/java/openjdk/bin:/usr/share/maven/bin:/usr/bin:/bin:/usr/local/bin"
 
-        SONAR_PROJECT_KEY  = 'Notification-Service'
-        SONAR_PROJECT_NAME = 'Notification-Service'
+        SONAR_PROJECT_KEY  = 'Gamification-Service'
+        SONAR_PROJECT_NAME = 'Gamification-Service'
     }
 
     stages {
