@@ -1,6 +1,5 @@
 package com.gamification.streaks.dto;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import lombok.Getter;
 import lombok.Setter;
 

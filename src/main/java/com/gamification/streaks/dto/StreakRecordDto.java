@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class StreakRecordDto {
     private String streakId;
     private String userId;
-    private String StreakType;
+    private String streakType;
     private Integer currentStreakCount;
     private Integer longestStreakCount;
     private LocalDate lastActiveData;

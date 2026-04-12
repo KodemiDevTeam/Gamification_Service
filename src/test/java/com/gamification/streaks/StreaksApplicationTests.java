@@ -24,5 +24,9 @@ class StreaksApplicationTests {
 	void contextLoads() {
 		when(amazonDynamoDB.listTables())
 			.thenReturn(new ListTablesResult().withTableNames(Collections.emptyList()));
+		
+		// Assert that the context loads successfully
+		assert amazonDynamoDB != null;
+		assert dynamoDBMapper != null;
 	}
 }
