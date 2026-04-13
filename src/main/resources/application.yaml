@@ -1,13 +1,12 @@
 spring:
   application:
     name: streaks
-
 server:
   port: 8087
 
 aws:
-  accessKey: arfbyg
-  secretKey: nw2vlj
+  accessKey: g2r1e4
+  secretKey: s9sa6n
   region: us-east-1
 
 dynamodb:

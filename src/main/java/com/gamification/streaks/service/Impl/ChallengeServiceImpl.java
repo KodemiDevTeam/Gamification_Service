@@ -4,7 +4,6 @@ import com.gamification.streaks.model.Challenge;
 import com.gamification.streaks.repository.ChallengeRepository;
 import com.gamification.streaks.service.ChallengeService;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -26,7 +25,6 @@ public class ChallengeServiceImpl implements ChallengeService {
         challenge.setEndDate(challengeDto.getEndDate());
         challenge.setActive(challengeDto.getActive());
         challengeRepository.save(challenge);
-
         return "Challenge Created Successfully";
     }
     public String create(Challenge challenge){
