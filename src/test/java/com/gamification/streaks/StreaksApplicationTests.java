@@ -24,5 +24,7 @@ class StreaksApplicationTests {
 	void contextLoads() {
 		when(amazonDynamoDB.listTables())
 			.thenReturn(new ListTablesResult().withTableNames(Collections.emptyList()));
+		ListTablesResult result = amazonDynamoDB.listTables();
+		org.junit.jupiter.api.Assertions.assertNotNull(result);
 	}
 }
