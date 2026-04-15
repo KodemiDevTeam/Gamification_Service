@@ -1,23 +1,19 @@
 package com.gamification.streaks.service.impl;
-
 import com.gamification.streaks.dto.XpTransactionDto;
 import com.gamification.streaks.execption.ResourceNotFoundException;
 import com.gamification.streaks.model.XpTransaction;
 import com.gamification.streaks.repository.XpTransactionRepository;
 import com.gamification.streaks.service.XpTransactionService;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class XpTransactionServiceImpl implements XpTransactionService {
-
+public class XpTransactionServiceimpl implements XpTransactionService {
     private final XpTransactionRepository xpTransactionRepository;
-
-    public XpTransactionServiceImpl(XpTransactionRepository xpTransactionRepository) {
+    public XpTransactionServiceimpl(XpTransactionRepository xpTransactionRepository) {
         this.xpTransactionRepository = xpTransactionRepository;
     }
 

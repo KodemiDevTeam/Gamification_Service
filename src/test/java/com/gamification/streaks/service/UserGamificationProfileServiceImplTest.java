@@ -3,7 +3,7 @@ package com.gamification.streaks.service;
 import com.gamification.streaks.dto.UserGamificationProfileDto;
 import com.gamification.streaks.model.UserGamificationProfile;
 import com.gamification.streaks.repository.UserGamificationProfileRepository;
-import com.gamification.streaks.service.Impl.UserGamificationProfileServiceImpl;
+import com.gamification.streaks.service.impl.UserGamificationProfileServiceimpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ class UserGamificationProfileServiceImplTest {
     private UserGamificationProfileRepository userGamificationProfileRepository;
 
     @InjectMocks
-    private UserGamificationProfileServiceImpl userGamificationProfileService;
+    private UserGamificationProfileServiceimpl userGamificationProfileService;
 
     private UserGamificationProfile profile;
     private UserGamificationProfileDto profileDto;

@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class LeaderBoardServiceImpl implements LeaderBoardService {
+public class LeaderBoardServiceimpl implements LeaderBoardService {
 
     private final LeaderBoardRepository leaderBoardRepository;
 
-    public LeaderBoardServiceImpl(LeaderBoardRepository leaderBoardRepository) {
+    public LeaderBoardServiceimpl(LeaderBoardRepository leaderBoardRepository) {
         this.leaderBoardRepository = leaderBoardRepository;
     }
 

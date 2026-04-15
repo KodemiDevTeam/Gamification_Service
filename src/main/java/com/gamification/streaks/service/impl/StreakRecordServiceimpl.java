@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class StreakRecordServiceImpl implements StreakRecordService {
+public class StreakRecordServiceimpl implements StreakRecordService {
 
     private final StreakRecordRepository streakRecordRepository;
 
-    public StreakRecordServiceImpl(StreakRecordRepository streakRecordRepository) {
+    public StreakRecordServiceimpl(StreakRecordRepository streakRecordRepository) {
         this.streakRecordRepository = streakRecordRepository;
     }
 

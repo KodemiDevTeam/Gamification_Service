@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ChallengeServiceImpl implements ChallengeService {
+public class ChallengeServiceimpl implements ChallengeService {
 
     private final ChallengeRepository challengeRepository;
 
-    public ChallengeServiceImpl(ChallengeRepository challengeRepository) {
+    public ChallengeServiceimpl(ChallengeRepository challengeRepository) {
         this.challengeRepository = challengeRepository;
     }
 

@@ -3,7 +3,7 @@ package com.gamification.streaks.service;
 import com.gamification.streaks.dto.GamificationRuleDto;
 import com.gamification.streaks.model.GamificationRule;
 import com.gamification.streaks.repository.GamificationRuleRepository;
-import com.gamification.streaks.service.Impl.GamificationRuleServiceImpl;
+import com.gamification.streaks.service.impl.GamificationRuleServiceimpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ class GamificationRuleServiceImplTest {
     private GamificationRuleRepository gamificationRuleRepository;
 
     @InjectMocks
-    private GamificationRuleServiceImpl gamificationRuleService;
+    private GamificationRuleServiceimpl gamificationRuleService;
 
     private GamificationRule rule;
     private GamificationRuleDto ruleDto;

@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class GamificationRuleServiceImpl implements GamificationRuleService {
+public class GamificationRuleServiceimpl implements GamificationRuleService {
 
     private final GamificationRuleRepository gamificationRuleRepository;
 
-    public GamificationRuleServiceImpl(GamificationRuleRepository gamificationRuleRepository) {
+    public GamificationRuleServiceimpl(GamificationRuleRepository gamificationRuleRepository) {
         this.gamificationRuleRepository = gamificationRuleRepository;
     }
 

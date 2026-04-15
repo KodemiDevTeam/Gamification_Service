@@ -1,25 +1,21 @@
 package com.gamification.streaks.service.impl;
-
 import com.gamification.streaks.dto.BadgeDto;
 import com.gamification.streaks.execption.ResourceNotFoundException;
 import com.gamification.streaks.model.Badge;
 import com.gamification.streaks.repository.BadgeRepository;
 import com.gamification.streaks.service.BadgeService;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class BadgeServiceImpl implements BadgeService {
+public class BadgeServiceimpl implements BadgeService {
 
     private static final String BADGE_NOT_FOUND = "Badge Not Found";
-
     private final BadgeRepository badgeRepository;
-
-    public BadgeServiceImpl(BadgeRepository badgeRepository) {
+    public BadgeServiceimpl(BadgeRepository badgeRepository) {
         this.badgeRepository = badgeRepository;
     }
 
@@ -50,7 +46,6 @@ public class BadgeServiceImpl implements BadgeService {
         }
         return mapToDto(badge);
     }
-
     public List<BadgeDto> getAllBadge() {
         List<Badge> badges = badgeRepository.findALl();
         List<BadgeDto> badgeDtos = new ArrayList<>();
@@ -59,7 +54,6 @@ public class BadgeServiceImpl implements BadgeService {
         }
         return badgeDtos;
     }
-
     public String updateBadge(String badgeId, Badge badge) {
         Badge existing = badgeRepository.findById(badgeId);
         if (existing == null) {
@@ -75,7 +69,6 @@ public class BadgeServiceImpl implements BadgeService {
         badgeRepository.save(existing);
         return "Badge Updated Successfully";
     }
-
     public String deleteBadge(String badgeId) {
         Badge badge = badgeRepository.findById(badgeId);
         if (badge == null) {
@@ -84,7 +77,6 @@ public class BadgeServiceImpl implements BadgeService {
         badgeRepository.delete(badgeId);
         return "Badge Deleted Successfully";
     }
-
     private BadgeDto mapToDto(Badge badge) {
         BadgeDto dto = new BadgeDto();
         dto.setBadgeId(badge.getBadgeId());

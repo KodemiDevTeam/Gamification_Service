@@ -3,7 +3,7 @@ package com.gamification.streaks.service;
 import com.gamification.streaks.dto.StreakRecordDto;
 import com.gamification.streaks.model.StreakRecord;
 import com.gamification.streaks.repository.StreakRecordRepository;
-import com.gamification.streaks.service.Impl.StreakRecordServiceImpl;
+import com.gamification.streaks.service.impl.StreakRecordServiceimpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ class StreakRecordServiceImplTest {
     private StreakRecordRepository streakRecordRepository;
 
     @InjectMocks
-    private StreakRecordServiceImpl streakRecordService;
+    private StreakRecordServiceimpl streakRecordService;
 
     private StreakRecord streakRecord;
     private StreakRecordDto streakRecordDto;

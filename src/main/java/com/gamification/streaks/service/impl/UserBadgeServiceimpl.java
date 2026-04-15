@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UserBadgeServiceImpl implements UserBadgeService {
+public class UserBadgeServiceimpl implements UserBadgeService {
 
     private final UserBadgeRepository userBadgeRepository;
 
-    public UserBadgeServiceImpl(UserBadgeRepository userBadgeRepository) {
+    public UserBadgeServiceimpl(UserBadgeRepository userBadgeRepository) {
         this.userBadgeRepository = userBadgeRepository;
     }
 

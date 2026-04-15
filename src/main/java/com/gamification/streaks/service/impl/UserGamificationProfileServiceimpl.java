@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UserGamificationProfileServiceImpl implements UserGamificationProfileService {
+public class UserGamificationProfileServiceimpl implements UserGamificationProfileService {
 
     private static final String PROFILE_NOT_FOUND = "User Gamification Profile Not Found";
 
     private final UserGamificationProfileRepository userGamificationProfileRepository;
 
-    public UserGamificationProfileServiceImpl(UserGamificationProfileRepository userGamificationProfileRepository) {
+    public UserGamificationProfileServiceimpl(UserGamificationProfileRepository userGamificationProfileRepository) {
         this.userGamificationProfileRepository = userGamificationProfileRepository;
     }
 

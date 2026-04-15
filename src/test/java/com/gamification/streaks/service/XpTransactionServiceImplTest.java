@@ -3,7 +3,7 @@ package com.gamification.streaks.service;
 import com.gamification.streaks.dto.XpTransactionDto;
 import com.gamification.streaks.model.XpTransaction;
 import com.gamification.streaks.repository.XpTransactionRepository;
-import com.gamification.streaks.service.Impl.XpTransactionServiceImpl;
+import com.gamification.streaks.service.impl.XpTransactionServiceimpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ class XpTransactionServiceImplTest {
     private XpTransactionRepository xpTransactionRepository;
 
     @InjectMocks
-    private XpTransactionServiceImpl xpTransactionService;
+    private XpTransactionServiceimpl xpTransactionService;
 
     private XpTransaction xpTransaction;
     private XpTransactionDto xpTransactionDto;

@@ -3,7 +3,7 @@ package com.gamification.streaks.service;
 import com.gamification.streaks.dto.ChallengeDto;
 import com.gamification.streaks.model.Challenge;
 import com.gamification.streaks.repository.ChallengeRepository;
-import com.gamification.streaks.service.Impl.ChallengeServiceImpl;
+import com.gamification.streaks.service.impl.ChallengeServiceimpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +25,7 @@ class ChallengeServiceImplTest {
     private ChallengeRepository challengeRepository;
 
     @InjectMocks
-    private ChallengeServiceImpl challengeService;
+    private ChallengeServiceimpl challengeService;
 
     private Challenge challenge;
     private ChallengeDto challengeDto;

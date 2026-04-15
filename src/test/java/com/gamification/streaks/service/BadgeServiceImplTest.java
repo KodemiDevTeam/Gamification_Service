@@ -3,7 +3,7 @@ package com.gamification.streaks.service;
 import com.gamification.streaks.dto.BadgeDto;
 import com.gamification.streaks.model.Badge;
 import com.gamification.streaks.repository.BadgeRepository;
-import com.gamification.streaks.service.Impl.BadgeServiceImpl;
+import com.gamification.streaks.service.impl.BadgeServiceimpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +25,7 @@ class BadgeServiceImplTest {
     private BadgeRepository badgeRepository;
 
     @InjectMocks
-    private BadgeServiceImpl badgeService;
+    private BadgeServiceimpl badgeService;
 
     private Badge badge;
     private BadgeDto badgeDto;

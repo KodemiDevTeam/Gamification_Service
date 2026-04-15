@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class RewardRuleServiceImpl implements RewardRuleService {
+public class RewardRuleServiceimpl implements RewardRuleService {
 
     private final RewardRuleRepository rewardRuleRepository;
 
-    public RewardRuleServiceImpl(RewardRuleRepository rewardRuleRepository) {
+    public RewardRuleServiceimpl(RewardRuleRepository rewardRuleRepository) {
         this.rewardRuleRepository = rewardRuleRepository;
     }
 

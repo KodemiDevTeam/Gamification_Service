@@ -3,7 +3,7 @@ package com.gamification.streaks.service;
 import com.gamification.streaks.dto.LeaderBoardEntryDto;
 import com.gamification.streaks.model.LeaderBoardEntry;
 import com.gamification.streaks.repository.LeaderBoardRepository;
-import com.gamification.streaks.service.Impl.LeaderBoardServiceImpl;
+import com.gamification.streaks.service.impl.LeaderBoardServiceimpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ class LeaderBoardServiceImplTest {
     private LeaderBoardRepository leaderBoardRepository;
 
     @InjectMocks
-    private LeaderBoardServiceImpl leaderBoardService;
+    private LeaderBoardServiceimpl leaderBoardService;
 
     private LeaderBoardEntry entry;
     private LeaderBoardEntryDto entryDto;
