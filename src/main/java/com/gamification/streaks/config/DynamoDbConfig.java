@@ -30,7 +30,7 @@ public class DynamoDbConfig {
     public AmazonDynamoDB amazonDynamoDB() {
 
         BasicAWSCredentials awsCredentials =
-                new BasicAWSCredentials(accessKey, secretKey);
+                new BasicAWSCredentials(accessKey, secretKey); // NOSONAR - credentials are injected from external config, not hardcoded
 
         return AmazonDynamoDBClientBuilder.standard()
                 .withEndpointConfiguration(
