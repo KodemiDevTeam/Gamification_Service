@@ -24,6 +24,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         profile.setLastActivityData(dto.getLastActivityData());
         profile.setTotalBadges(dto.getTotalBadges());
         profile.setTotalReward(dto.getTotalReward());
+        profile.setCoinBalance(dto.getCoinBalance());
         profile.setCreatedAt(dto.getCreatedAt());
         profile.setUpdatedAt(dto.getUpdatedAt());
         return userGamificationProfileRepository.save(profile);
@@ -61,6 +62,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         existing.setLastActivityData(userGamificationProfile.getLastActivityData());
         existing.setTotalBadges(userGamificationProfile.getTotalBadges());
         existing.setTotalReward(userGamificationProfile.getTotalReward());
+        existing.setCoinBalance(userGamificationProfile.getCoinBalance());
         existing.setUpdatedAt(userGamificationProfile.getUpdatedAt());
         userGamificationProfileRepository.save(existing);
         return "User Gamification Profile Updated Successfully";
@@ -83,6 +85,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         dto.setLastActivityData(profile.getLastActivityData());
         dto.setTotalBadges(profile.getTotalBadges());
         dto.setTotalReward(profile.getTotalReward());
+        dto.setCoinBalance(profile.getCoinBalance());
         dto.setCreatedAt(profile.getCreatedAt());
         dto.setUpdatedAt(profile.getUpdatedAt());
         return dto;

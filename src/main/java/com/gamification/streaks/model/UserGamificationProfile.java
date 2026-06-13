@@ -29,6 +29,8 @@ public class UserGamificationProfile {
     private Integer totalBadges;
     @DynamoDBAttribute(attributeName = "totalReward")
     private Integer totalReward;
+    @DynamoDBAttribute(attributeName = "coinBalance")
+    private Integer coinBalance;
     @DynamoDBAttribute(attributeName = "createdAt")
     private LocalDateTime createdAt;
     @DynamoDBAttribute(attributeName = "updatedAt")

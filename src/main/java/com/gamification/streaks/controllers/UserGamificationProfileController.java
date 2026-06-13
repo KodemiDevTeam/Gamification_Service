@@ -9,7 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user-gamification")
-public class UserGamificationProfileController {
+public class
+UserGamificationProfileController {
 
     private final UserGamificationProfileService userGamificationProfileService;
 
