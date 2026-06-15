@@ -9,22 +9,16 @@ import java.util.List;
 @Repository
 public class UserGamificationProfileRepository {
     private final DynamoDBMapper dynamoDBMapper;
-    public UserGamificationProfileRepository(DynamoDBMapper dynamoDBMapper){
-        this.dynamoDBMapper = dynamoDBMapper;
-    }
+    public UserGamificationProfileRepository(DynamoDBMapper dynamoDBMapper) { this.dynamoDBMapper = dynamoDBMapper; }
     public UserGamificationProfile save(UserGamificationProfile userGamificationProfile){
         dynamoDBMapper.save(userGamificationProfile);
         return userGamificationProfile;
     }
-    public UserGamificationProfile findById(String userId){
-        return dynamoDBMapper.load(UserGamificationProfile.class, userId);
-    }
-    public List<UserGamificationProfile> findAll(){
-        return dynamoDBMapper.scan(UserGamificationProfile.class,new DynamoDBScanExpression());
-    }
+    public UserGamificationProfile findById(String userId) { return dynamoDBMapper.load(UserGamificationProfile.class, userId); }
+    public List<UserGamificationProfile> findAll() { return dynamoDBMapper.scan(UserGamificationProfile.class, new DynamoDBScanExpression()); }
     public void delete(String userId){
-        UserGamificationProfile userGamificationProfile=dynamoDBMapper.load(UserGamificationProfile.class,userId);
-        if(userGamificationProfile!=null){
+        UserGamificationProfile userGamificationProfile = dynamoDBMapper.load(UserGamificationProfile.class, userId);
+        if(userGamificationProfile != null){
             dynamoDBMapper.delete(userGamificationProfile);
         }
     }

@@ -10,22 +10,16 @@ import java.util.List;
 @Repository
 public class BadgeRepository {
     private final DynamoDBMapper dynamoDBMapper;
-    public BadgeRepository(DynamoDBMapper dynamoDBMapper){
-        this.dynamoDBMapper=dynamoDBMapper;
-    }
+    public BadgeRepository(DynamoDBMapper dynamoDBMapper) { this.dynamoDBMapper = dynamoDBMapper; }
     public Badge save(Badge badge){
         dynamoDBMapper.save(badge);
         return badge;
     }
-    public Badge findById(String badgeId){
-        return dynamoDBMapper.load(Badge.class,badgeId);
-    }
-    public List<Badge> findALl(){
-        return dynamoDBMapper.scan(Badge.class,new DynamoDBScanExpression());
-    }
+    public Badge findById(String badgeId) { return dynamoDBMapper.load(Badge.class, badgeId); }
+    public List<Badge> findAll() { return dynamoDBMapper.scan(Badge.class, new DynamoDBScanExpression()); }
     public void delete(String badgeId){
-        Badge badge=dynamoDBMapper.load(Badge.class,badgeId);
-        if(badgeId!=null){
+        Badge badge = dynamoDBMapper.load(Badge.class, badgeId);
+        if(badge != null){
             dynamoDBMapper.delete(badge);
         }
     }

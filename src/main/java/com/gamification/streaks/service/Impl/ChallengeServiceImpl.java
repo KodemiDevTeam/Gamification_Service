@@ -20,6 +20,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         challenge.setChallengeName(challengeDto.getChallengeName());
         challenge.setChallengeType(challengeDto.getChallengeType());
         challenge.setDescription(challengeDto.getDescription());
+        challenge.setTargetType(challengeDto.getTargetType());
+        challenge.setTargetCount(challengeDto.getTargetCount());
         challenge.setRewardXP(challengeDto.getRewardXP());
         challenge.setRewardBadge(challengeDto.getRewardBadge());
         challenge.setStartDate(challengeDto.getStartDate());
@@ -51,6 +53,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         existing.setChallengeName(challenge.getChallengeName());
         existing.setChallengeType(challenge.getChallengeType());
         existing.setDescription(challenge.getDescription());
+        existing.setTargetType(challenge.getTargetType());
+        existing.setTargetCount(challenge.getTargetCount());
         existing.setRewardXP(challenge.getRewardXP());
         existing.setRewardBadge(challenge.getRewardBadge());
         existing.setStartDate(challenge.getStartDate());
@@ -73,6 +77,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         dto.setChallengeName(challenge.getChallengeName());
         dto.setChallengeType(challenge.getChallengeType());
         dto.setDescription(challenge.getDescription());
+        dto.setTargetType(challenge.getTargetType());
+        dto.setTargetCount(challenge.getTargetCount());
         dto.setRewardXP(challenge.getRewardXP());
         dto.setRewardBadge(challenge.getRewardBadge());
         dto.setStartDate(challenge.getStartDate());

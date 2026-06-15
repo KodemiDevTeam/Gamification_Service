@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Setter
 public class UserGamificationProfileDto {
     private String userId;
-    private String adminId;
     private String role;
     private Integer totalXp;
     private Integer currentLevel;

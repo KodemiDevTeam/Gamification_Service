@@ -17,7 +17,7 @@ public class Challenge {
     private String challengeName;
     @DynamoDBAttribute(attributeName="challengeType")
     private String challengeType;
-    @DynamoDBAttribute(attributeName="Description")
+    @DynamoDBAttribute(attributeName="description")
     private String description;
     @DynamoDBAttribute(attributeName="targetType")
     private String targetType;
@@ -27,10 +27,10 @@ public class Challenge {
     private Integer rewardXP;
     @DynamoDBAttribute(attributeName="rewardBadge")
     private String rewardBadge;
-    @DynamoDBAttribute(attributeName="startData")
+    @DynamoDBAttribute(attributeName="startDate")
     private LocalDate startDate;
     @DynamoDBAttribute(attributeName="endDate")
     private LocalDate endDate;
-    @DynamoDBAttribute(attributeName="Active")
+    @DynamoDBAttribute(attributeName="active")
     private Boolean active;
 }

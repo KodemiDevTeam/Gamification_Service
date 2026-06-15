@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 @Setter
 @DynamoDBTable(tableName = "LeaderBoardEntry")
 public class LeaderBoardEntry {
-    @DynamoDBHashKey(attributeName="LeaderboardId")
+    @DynamoDBHashKey(attributeName="leaderboardId")
     private String leaderboardId;
-    @DynamoDBAttribute(attributeName="LeaderBoardType")
+    @DynamoDBAttribute(attributeName="leaderboardType")
     private String leaderboardType;
     @DynamoDBAttribute(attributeName="userId")
     private String userId;
-    @DynamoDBAttribute(attributeName="XpScore")
+    @DynamoDBAttribute(attributeName="xpScore")
     private Integer xpScore;
     @DynamoDBAttribute(attributeName="rank")
     private Integer rank;

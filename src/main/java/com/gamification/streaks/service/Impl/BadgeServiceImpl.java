@@ -46,7 +46,7 @@ public class BadgeServiceImpl implements BadgeService {
     }
 
     public List<BadgeDto> getAllBadge(){
-        List<Badge> badges = badgeRepository.findALl();
+        List<Badge> badges = badgeRepository.findAll();
         List<BadgeDto> badgeDtos = new ArrayList<>();
         for(Badge badge : badges){
             badgeDtos.add(mapToDto(badge));

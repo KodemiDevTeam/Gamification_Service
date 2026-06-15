@@ -9,36 +9,36 @@ import lombok.Setter;
 @DynamoDBTable(tableName = "GamificationRule")
 public class GamificationRule {
 
-    @DynamoDBHashKey(attributeName = "RuleId")
+    @DynamoDBHashKey(attributeName = "ruleId")
     private String ruleId;
 
-    @DynamoDBAttribute(attributeName = "RuleName")
+    @DynamoDBAttribute(attributeName = "ruleName")
     private String ruleName;
 
-    @DynamoDBAttribute(attributeName = "RuleType")
+    @DynamoDBAttribute(attributeName = "ruleType")
     private String ruleType;
 
-    @DynamoDBAttribute(attributeName = "Config")
+    @DynamoDBAttribute(attributeName = "config")
     private String config;
 
-    @DynamoDBAttribute(attributeName = "Enabled")
+    @DynamoDBAttribute(attributeName = "enabled")
     private Boolean enabled;
 
-    @DynamoDBAttribute(attributeName = "Version")
+    @DynamoDBAttribute(attributeName = "version")
     private Integer version;
 
-    @DynamoDBAttribute(attributeName = "AbCohort")
+    @DynamoDBAttribute(attributeName = "abCohort")
     private String abCohort;
 
-    @DynamoDBAttribute(attributeName = "CreatedAt")
+    @DynamoDBAttribute(attributeName = "createdAt")
     private String createdAt;
 
-    @DynamoDBAttribute(attributeName = "UpdatedAt")
+    @DynamoDBAttribute(attributeName = "updatedAt")
     private String updatedAt;
 
-    @DynamoDBAttribute(attributeName = "UpdatedBy")
+    @DynamoDBAttribute(attributeName = "updatedBy")
     private String updatedBy;
 
-    @DynamoDBAttribute(attributeName = "RollbackFromRuleId")
+    @DynamoDBAttribute(attributeName = "rollbackFromRuleId")
     private String rollbackFromRuleId;
 }

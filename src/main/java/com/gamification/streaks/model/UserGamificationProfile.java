@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class UserGamificationProfile {
     @DynamoDBHashKey(attributeName = "userId")
     private String userId;
-    @DynamoDBAttribute(attributeName = "adminId")
+    @DynamoDBAttribute(attributeName = "role")
     private String role;
     @DynamoDBAttribute(attributeName = "totalXp")
     private Integer totalXp;

@@ -12,22 +12,16 @@ public class GamificationRuleRepository {
 
     private final DynamoDBMapper dynamoDBMapper;
 
-    public GamificationRuleRepository(DynamoDBMapper dynamoDBMapper){
-        this.dynamoDBMapper = dynamoDBMapper;
-    }
+    public GamificationRuleRepository(DynamoDBMapper dynamoDBMapper) { this.dynamoDBMapper = dynamoDBMapper; }
 
     public GamificationRule save(GamificationRule gamificationRule){
         dynamoDBMapper.save(gamificationRule);
         return gamificationRule;
     }
 
-    public GamificationRule findById(String ruleId){
-        return dynamoDBMapper.load(GamificationRule.class, ruleId);
-    }
+    public GamificationRule findById(String ruleId) { return dynamoDBMapper.load(GamificationRule.class, ruleId); }
 
-    public List<GamificationRule> findAll(){
-        return dynamoDBMapper.scan(GamificationRule.class, new DynamoDBScanExpression());
-    }
+    public List<GamificationRule> findAll() { return dynamoDBMapper.scan(GamificationRule.class, new DynamoDBScanExpression()); }
 
     public void delete(String ruleId){
         GamificationRule rule = dynamoDBMapper.load(GamificationRule.class, ruleId);
