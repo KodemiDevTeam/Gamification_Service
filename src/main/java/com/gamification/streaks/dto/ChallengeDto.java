@@ -18,4 +18,6 @@ public class ChallengeDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private Boolean active;
+    private String userId;
+    private String transactionId;
 }

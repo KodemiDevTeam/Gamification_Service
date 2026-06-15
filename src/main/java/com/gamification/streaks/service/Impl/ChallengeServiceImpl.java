@@ -27,6 +27,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         challenge.setStartDate(challengeDto.getStartDate());
         challenge.setEndDate(challengeDto.getEndDate());
         challenge.setActive(challengeDto.getActive());
+        challenge.setUserId(challengeDto.getUserId());
+        challenge.setTransactionId(challengeDto.getTransactionId());
         challengeRepository.save(challenge);
 
         return "Challenge Created Successfully";
@@ -60,6 +62,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         existing.setStartDate(challenge.getStartDate());
         existing.setEndDate(challenge.getEndDate());
         existing.setActive(challenge.getActive());
+        existing.setUserId(challenge.getUserId());
+        existing.setTransactionId(challenge.getTransactionId());
         challengeRepository.save(existing);
         return "Challenge Updated Successfully";
     }
@@ -84,6 +88,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         dto.setStartDate(challenge.getStartDate());
         dto.setEndDate(challenge.getEndDate());
         dto.setActive(challenge.getActive());
+        dto.setUserId(challenge.getUserId());
+        dto.setTransactionId(challenge.getTransactionId());
         return dto;
     }
 }

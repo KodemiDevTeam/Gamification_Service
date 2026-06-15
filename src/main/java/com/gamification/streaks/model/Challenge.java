@@ -33,4 +33,8 @@ public class Challenge {
     private LocalDate endDate;
     @DynamoDBAttribute(attributeName="active")
     private Boolean active;
+    @DynamoDBAttribute(attributeName="userId")
+    private String userId;
+    @DynamoDBAttribute(attributeName="transactionId")
+    private String transactionId;
 }
