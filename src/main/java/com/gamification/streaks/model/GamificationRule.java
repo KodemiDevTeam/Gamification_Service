@@ -21,6 +21,9 @@ public class GamificationRule {
     @DynamoDBAttribute(attributeName = "config")
     private String config;
 
+    @DynamoDBAttribute(attributeName = "conditionExpression")
+    private String conditionExpression;
+
     @DynamoDBAttribute(attributeName = "enabled")
     private Boolean enabled;
 

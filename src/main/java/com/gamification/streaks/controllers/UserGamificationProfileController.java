@@ -49,4 +49,19 @@ UserGamificationProfileController {
     public String deleteUserGamificationProfile(@PathVariable String userId){
         return userGamificationProfileService.deleteUserGamificationProfile(userId);
     }
+
+    @GetMapping("/{userId}/checkout-calculate")
+    public com.gamification.streaks.dto.CheckoutCalculationDto checkoutCalculate(@PathVariable String userId) {
+        return userGamificationProfileService.checkoutCalculate(userId);
+    }
+
+    @PostMapping("/{userId}/convert-xp")
+    public String convertXp(@PathVariable String userId, @RequestParam Integer coins) {
+        return userGamificationProfileService.convertXpToCoins(userId, coins);
+    }
+
+    @PostMapping("/{userId}/redeem")
+    public Double redeem(@PathVariable String userId, @RequestParam Integer coins) {
+        return userGamificationProfileService.redeemCoins(userId, coins);
+    }
 }

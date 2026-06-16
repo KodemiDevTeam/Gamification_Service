@@ -9,6 +9,7 @@ public class GamificationRuleDto {
     private String ruleName;
     private String ruleType;
     private String config;
+    private String conditionExpression;
     private Boolean enabled;
     private Integer version;
     private String abCohort;

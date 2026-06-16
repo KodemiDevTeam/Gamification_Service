@@ -13,4 +13,8 @@ public interface UserGamificationProfileService {
     List<UserGamificationProfileDto> getAllUserGamificationProfiles();
     String updateUserGamificationProfile(String userId, UserGamificationProfile userGamificationProfile);
     String deleteUserGamificationProfile(String userId);
+
+    com.gamification.streaks.dto.CheckoutCalculationDto checkoutCalculate(String userId);
+    String convertXpToCoins(String userId, Integer coins);
+    Double redeemCoins(String userId, Integer coins);
 }

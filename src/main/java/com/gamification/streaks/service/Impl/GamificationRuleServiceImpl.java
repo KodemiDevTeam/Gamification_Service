@@ -25,6 +25,7 @@ public class GamificationRuleServiceImpl implements GamificationRuleService {
         rule.setRuleName(dto.getRuleName());
         rule.setRuleType(dto.getRuleType());
         rule.setConfig(dto.getConfig());
+        rule.setConditionExpression(dto.getConditionExpression());
         rule.setEnabled(dto.getEnabled());
         rule.setVersion(dto.getVersion());
         rule.setAbCohort(dto.getAbCohort());
@@ -56,6 +57,7 @@ public class GamificationRuleServiceImpl implements GamificationRuleService {
         existing.setRuleName(gamificationRule.getRuleName());
         existing.setRuleType(gamificationRule.getRuleType());
         existing.setConfig(gamificationRule.getConfig());
+        existing.setConditionExpression(gamificationRule.getConditionExpression());
         existing.setEnabled(gamificationRule.getEnabled());
         existing.setVersion(gamificationRule.getVersion());
         existing.setAbCohort(gamificationRule.getAbCohort());
@@ -95,6 +97,7 @@ public class GamificationRuleServiceImpl implements GamificationRuleService {
         dto.setRuleName(rule.getRuleName());
         dto.setRuleType(rule.getRuleType());
         dto.setConfig(rule.getConfig());
+        dto.setConditionExpression(rule.getConditionExpression());
         dto.setEnabled(rule.getEnabled());
         dto.setVersion(rule.getVersion());
         dto.setAbCohort(rule.getAbCohort());

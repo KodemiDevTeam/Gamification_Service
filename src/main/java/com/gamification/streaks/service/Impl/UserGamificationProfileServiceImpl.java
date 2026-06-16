@@ -10,8 +10,13 @@ import java.util.UUID;
 @Service
 public class UserGamificationProfileServiceImpl implements UserGamificationProfileService {
     private final UserGamificationProfileRepository userGamificationProfileRepository;
-    public UserGamificationProfileServiceImpl(UserGamificationProfileRepository userGamificationProfileRepository){
+    private final com.gamification.streaks.repository.XpTransactionRepository xpTransactionRepository;
+
+    public UserGamificationProfileServiceImpl(
+            UserGamificationProfileRepository userGamificationProfileRepository,
+            com.gamification.streaks.repository.XpTransactionRepository xpTransactionRepository){
         this.userGamificationProfileRepository = userGamificationProfileRepository;
+        this.xpTransactionRepository = xpTransactionRepository;
     }
     public UserGamificationProfile createUserGamification(UserGamificationProfileDto dto){
 
@@ -89,5 +94,77 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         dto.setCreatedAt(profile.getCreatedAt());
         dto.setUpdatedAt(profile.getUpdatedAt());
         return dto;
+    }
+
+    @Override
+    public com.gamification.streaks.dto.CheckoutCalculationDto checkoutCalculate(String userId) {
+        UserGamificationProfile profile = userGamificationProfileRepository.findById(userId);
+        if (profile == null) {
+            throw new RuntimeException("User Gamification Profile Not Found");
+        }
+        com.gamification.streaks.dto.CheckoutCalculationDto calculation = new com.gamification.streaks.dto.CheckoutCalculationDto();
+        calculation.setUserId(userId);
+        calculation.setTotalXp(profile.getTotalXp() != null ? profile.getTotalXp() : 0);
+        calculation.setCoinBalance(profile.getCoinBalance() != null ? profile.getCoinBalance() : 0);
+        calculation.setPotentialCoinsFromXp(calculation.getTotalXp() / 100);
+        calculation.setDiscountValue(calculation.getCoinBalance() * 10.0);
+        return calculation;
+    }
+
+    @Override
+    public String convertXpToCoins(String userId, Integer coins) {
+        UserGamificationProfile profile = userGamificationProfileRepository.findById(userId);
+        if (profile == null) {
+            throw new RuntimeException("User Gamification Profile Not Found");
+        }
+        int requiredXp = coins * 100;
+        int currentXp = profile.getTotalXp() != null ? profile.getTotalXp() : 0;
+        if (currentXp < requiredXp) {
+            throw new RuntimeException("Insufficient XP Balance to convert to " + coins + " Coins");
+        }
+        profile.setTotalXp(currentXp - requiredXp);
+        profile.setCoinBalance((profile.getCoinBalance() != null ? profile.getCoinBalance() : 0) + coins);
+        profile.setUpdatedAt(java.time.LocalDateTime.now());
+        userGamificationProfileRepository.save(profile);
+
+        com.gamification.streaks.model.XpTransaction transaction = new com.gamification.streaks.model.XpTransaction();
+        transaction.setXpTransactionId(UUID.randomUUID().toString());
+        transaction.setUserId(userId);
+        transaction.setXpAmount(-requiredXp);
+        transaction.setXpSource("XP_TO_COIN_CONVERSION");
+        transaction.setReferenceId(profile.getUserId());
+        transaction.setDescription("Converted " + requiredXp + " XP into " + coins + " Coins");
+        transaction.setCreatedAt(java.time.LocalDateTime.now().toString());
+        xpTransactionRepository.save(transaction);
+
+        return "Converted " + requiredXp + " XP to " + coins + " Coins Successfully";
+    }
+
+    @Override
+    public Double redeemCoins(String userId, Integer coins) {
+        UserGamificationProfile profile = userGamificationProfileRepository.findById(userId);
+        if (profile == null) {
+            throw new RuntimeException("User Gamification Profile Not Found");
+        }
+        int currentCoins = profile.getCoinBalance() != null ? profile.getCoinBalance() : 0;
+        if (currentCoins < coins) {
+            throw new RuntimeException("Insufficient Coin Balance to redeem " + coins + " Coins");
+        }
+        profile.setCoinBalance(currentCoins - coins);
+        profile.setUpdatedAt(java.time.LocalDateTime.now());
+        userGamificationProfileRepository.save(profile);
+
+        com.gamification.streaks.model.XpTransaction transaction = new com.gamification.streaks.model.XpTransaction();
+        transaction.setXpTransactionId(UUID.randomUUID().toString());
+        transaction.setUserId(userId);
+        transaction.setXpAmount(0);
+        transaction.setXpSource("COIN_REDEMPTION");
+        transaction.setReferenceId(profile.getUserId());
+        double discount = coins * 10.0;
+        transaction.setDescription("Redeemed " + coins + " Coins for ₹" + discount + " discount");
+        transaction.setCreatedAt(java.time.LocalDateTime.now().toString());
+        xpTransactionRepository.save(transaction);
+
+        return discount;
     }
 }
