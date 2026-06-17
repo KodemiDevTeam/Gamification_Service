@@ -3,6 +3,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +21,8 @@ public class ChallengeDto {
     private Boolean active;
     private String userId;
     private String transactionId;
+    private Integer maxParticipants;
+    private Integer currentParticipants;
+    private List<RewardTierDto> rewardTiers;
+    private String status;
 }

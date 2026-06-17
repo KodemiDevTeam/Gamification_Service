@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,4 +38,10 @@ public class Challenge {
     private String userId;
     @DynamoDBAttribute(attributeName="transactionId")
     private String transactionId;
+    @DynamoDBAttribute(attributeName="maxParticipants")
+    private Integer maxParticipants;
+    @DynamoDBAttribute(attributeName="currentParticipants")
+    private Integer currentParticipants;
+    @DynamoDBAttribute(attributeName="rewardTiers")
+    private List<RewardTier> rewardTiers;
 }
