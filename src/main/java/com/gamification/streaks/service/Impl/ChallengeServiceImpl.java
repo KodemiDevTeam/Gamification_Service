@@ -1,5 +1,6 @@
 package com.gamification.streaks.service.Impl;
 import com.gamification.streaks.dto.ChallengeDto;
+import com.gamification.streaks.enums.ChallengeStatus;
 import com.gamification.streaks.model.Challenge;
 import com.gamification.streaks.repository.ChallengeRepository;
 import com.gamification.streaks.service.ChallengeService;
@@ -7,15 +8,19 @@ import com.gamification.streaks.model.RewardTier;
 import com.gamification.streaks.dto.RewardTierDto;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 @Service
 public class ChallengeServiceImpl implements ChallengeService {
     private final ChallengeRepository challengeRepository;
     public ChallengeServiceImpl(ChallengeRepository challengeRepository){
         this.challengeRepository = challengeRepository;
     }
+
     public String createChallenge(ChallengeDto challengeDto){
         Challenge challenge = new Challenge();
         challenge.setChallengeId(UUID.randomUUID().toString());
@@ -34,24 +39,32 @@ public class ChallengeServiceImpl implements ChallengeService {
         challenge.setMaxParticipants(challengeDto.getMaxParticipants());
         challenge.setCurrentParticipants(challengeDto.getCurrentParticipants());
         challenge.setRewardTiers(mapTiersToModel(challengeDto.getRewardTiers()));
+        challenge.setStatus(computeStatus(challenge));
+        challenge.setDeleted(false);
+        challenge.setNotifyParticipants(challengeDto.getNotifyParticipants());
         challengeRepository.save(challenge);
-
         return "Challenge Created Successfully";
     }
+
     public String create(Challenge challenge){
         challenge.setChallengeId(UUID.randomUUID().toString());
+        challenge.setStatus(computeStatus(challenge));
+        challenge.setDeleted(false);
         challengeRepository.save(challenge);
         return "Challenge Created Successfully";
     }
+
     public List<ChallengeDto> getAllChallenge(){
         List<Challenge> challenges = challengeRepository.findAll();
         List<ChallengeDto> dtoList = new ArrayList<>();
         for(Challenge challenge : challenges){
+            // Exclude soft-deleted records
+            if (Boolean.TRUE.equals(challenge.getDeleted())) continue;
             dtoList.add(mapToDto(challenge));
         }
-
         return dtoList;
     }
+
     public String updateChallenge(String challengeId, Challenge challenge){
         Challenge existing = challengeRepository.findById(challengeId);
         if(existing == null){
@@ -72,9 +85,12 @@ public class ChallengeServiceImpl implements ChallengeService {
         existing.setMaxParticipants(challenge.getMaxParticipants());
         existing.setCurrentParticipants(challenge.getCurrentParticipants());
         existing.setRewardTiers(challenge.getRewardTiers());
+        existing.setStatus(computeStatus(existing));
+        existing.setNotifyParticipants(challenge.getNotifyParticipants());
         challengeRepository.save(existing);
         return "Challenge Updated Successfully";
     }
+
     public String deleteChallenge(String challengeId){
         Challenge challenge = challengeRepository.findById(challengeId);
         if(challenge == null){
@@ -83,6 +99,20 @@ public class ChallengeServiceImpl implements ChallengeService {
         challengeRepository.delete(challengeId);
         return "Challenge Deleted Successfully";
     }
+
+    public String softDeleteChallenge(String challengeId){
+        Challenge challenge = challengeRepository.findById(challengeId);
+        if(challenge == null){
+            throw new RuntimeException("Challenge Not Found");
+        }
+        challenge.setDeleted(true);
+        challenge.setDeletedAt(LocalDateTime.now());
+        challenge.setActive(false);
+        challenge.setStatus(ChallengeStatus.INACTIVE);
+        challengeRepository.save(challenge);
+        return "Challenge Archived Successfully";
+    }
+
     private ChallengeDto mapToDto(Challenge challenge){
         ChallengeDto dto = new ChallengeDto();
         dto.setChallengeId(challenge.getChallengeId());
@@ -101,7 +131,8 @@ public class ChallengeServiceImpl implements ChallengeService {
         dto.setMaxParticipants(challenge.getMaxParticipants());
         dto.setCurrentParticipants(challenge.getCurrentParticipants());
         dto.setRewardTiers(mapTiersToDto(challenge.getRewardTiers()));
-        dto.setStatus(calculateStatus(challenge));
+        dto.setStatus(challenge.getStatus() != null ? challenge.getStatus() : computeStatus(challenge));
+        dto.setNotifyParticipants(challenge.getNotifyParticipants());
         return dto;
     }
 
@@ -133,22 +164,26 @@ public class ChallengeServiceImpl implements ChallengeService {
         return list;
     }
 
-    private String calculateStatus(Challenge challenge) {
+    /**
+     * Computes the ChallengeStatus based on active flag, startDate, and endDate.
+     * Used at create/update time to persist status and as a fallback during mapping.
+     */
+    private ChallengeStatus computeStatus(Challenge challenge) {
         if (challenge.getActive() == null || !challenge.getActive()) {
-            return "Expired";
+            return ChallengeStatus.INACTIVE;
         }
-        java.time.LocalDate now = java.time.LocalDate.now();
+        LocalDate now = LocalDate.now();
         if (challenge.getStartDate() != null && now.isBefore(challenge.getStartDate())) {
-            return "Upcoming";
+            return ChallengeStatus.SCHEDULED;
         }
         if (challenge.getEndDate() != null) {
             if (now.isAfter(challenge.getEndDate())) {
-                return "Expired";
+                return ChallengeStatus.EXPIRED;
             }
             if (now.plusDays(7).isAfter(challenge.getEndDate())) {
-                return "Ending Soon";
+                return ChallengeStatus.ENDING_SOON;
             }
         }
-        return "Active";
+        return ChallengeStatus.ACTIVE;
     }
 }

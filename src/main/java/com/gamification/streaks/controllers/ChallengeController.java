@@ -37,8 +37,18 @@ public class ChallengeController {
         return challengeService.updateChallenge(challengeId, challenge);
     }
 
+    /** Hard delete — use only when permanently purging a challenge. */
     @DeleteMapping("/{challengeId}")
     public String deleteChallenge(@PathVariable String challengeId) {
         return challengeService.deleteChallenge(challengeId);
+    }
+
+    /**
+     * Soft delete (archive) — preferred action from the UI "Delete Challenge" confirmation modal.
+     * Sets deleted=true, active=false, status=INACTIVE. Record is hidden from list but retained in DB.
+     */
+    @DeleteMapping("/{challengeId}/archive")
+    public String archiveChallenge(@PathVariable String challengeId) {
+        return challengeService.softDeleteChallenge(challengeId);
     }
 }

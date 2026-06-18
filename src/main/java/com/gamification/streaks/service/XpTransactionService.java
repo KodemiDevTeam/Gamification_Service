@@ -11,4 +11,5 @@ public interface XpTransactionService {
     List<XpTransactionDto> getAllXpTransaction();
     String update(String xpTransactionId,XpTransaction xpTransaction);
     String deleteXpTransaction(String xpTransactionId);
+    List<XpTransactionDto> getXpTransactionsByUserId(String userId);
 }

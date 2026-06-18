@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 @Service
 public class StreakRecordServiceImpl implements StreakRecordService {
     private final StreakRecordRepository streakRecordRepository;
@@ -20,7 +21,7 @@ public class StreakRecordServiceImpl implements StreakRecordService {
         record.setStreakType(dto.getStreakType());
         record.setCurrentStreakCount(dto.getCurrentStreakCount());
         record.setLongestStreakCount(dto.getLongestStreakCount());
-        record.setLastActiveData(dto.getLastActiveData());
+        record.setLastActiveDate(dto.getLastActiveDate());   // fixed: was lastActiveData
         record.setStreakStatus(dto.getStreakStatus());
         record.setCreatedAt(dto.getCreatedAt());
         record.setUpdatedAt(dto.getUpdatedAt());
@@ -39,7 +40,6 @@ public class StreakRecordServiceImpl implements StreakRecordService {
         for(StreakRecord record : records){
             dtoList.add(mapToDto(record));
         }
-
         return dtoList;
     }
     public String updateStreak(String streakId, StreakRecord streakRecord){
@@ -47,12 +47,11 @@ public class StreakRecordServiceImpl implements StreakRecordService {
         if(existing == null){
             throw new RuntimeException("Streak Record Not Found");
         }
-
         existing.setUserId(streakRecord.getUserId());
         existing.setStreakType(streakRecord.getStreakType());
         existing.setCurrentStreakCount(streakRecord.getCurrentStreakCount());
         existing.setLongestStreakCount(streakRecord.getLongestStreakCount());
-        existing.setLastActiveData(streakRecord.getLastActiveData());
+        existing.setLastActiveDate(streakRecord.getLastActiveDate());   // fixed: was lastActiveData
         existing.setStreakStatus(streakRecord.getStreakStatus());
         existing.setUpdatedAt(streakRecord.getUpdatedAt());
         streakRecordRepository.save(existing);
@@ -64,7 +63,6 @@ public class StreakRecordServiceImpl implements StreakRecordService {
             throw new RuntimeException("Streak Record Not Found");
         }
         streakRecordRepository.delete(streakId);
-
         return "Streak Record Deleted Successfully";
     }
 
@@ -75,11 +73,20 @@ public class StreakRecordServiceImpl implements StreakRecordService {
         dto.setStreakType(record.getStreakType());
         dto.setCurrentStreakCount(record.getCurrentStreakCount());
         dto.setLongestStreakCount(record.getLongestStreakCount());
-        dto.setLastActiveData(record.getLastActiveData());
+        dto.setLastActiveDate(record.getLastActiveDate());   // fixed: was lastActiveData
         dto.setStreakStatus(record.getStreakStatus());
         dto.setCreatedAt(record.getCreatedAt());
         dto.setUpdatedAt(record.getUpdatedAt());
-
         return dto;
+    }
+
+    @Override
+    public List<StreakRecordDto> getStreakRecordsByUserId(String userId) {
+        List<StreakRecord> records = streakRecordRepository.findByUserId(userId);
+        List<StreakRecordDto> dtoList = new ArrayList<>();
+        for(StreakRecord record : records){
+            dtoList.add(mapToDto(record));
+        }
+        return dtoList;
     }
 }

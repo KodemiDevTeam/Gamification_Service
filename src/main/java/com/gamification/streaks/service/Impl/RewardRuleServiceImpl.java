@@ -4,6 +4,7 @@ import com.gamification.streaks.model.RewardRule;
 import com.gamification.streaks.repository.RewardRuleRepository;
 import com.gamification.streaks.service.RewardRuleService;
 import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class RewardRuleServiceImpl implements RewardRuleService {
         rule.setRewardType(rewardRuleDto.getRewardType());
         rule.setRewardValue(rewardRuleDto.getRewardValue());
         rule.setActive(rewardRuleDto.getActive());
-        rule.setCreatedAt(rewardRuleDto.getCreatedAt());
+        rule.setCreatedAt(rewardRuleDto.getCreatedAt() != null ? rewardRuleDto.getCreatedAt() : LocalDateTime.now());
+        rule.setAbCohort(rewardRuleDto.getAbCohort());
 
         rewardRuleRepository.save(rule);
 
@@ -66,6 +68,8 @@ public class RewardRuleServiceImpl implements RewardRuleService {
         existing.setRewardType(rewardRule.getRewardType());
         existing.setRewardValue(rewardRule.getRewardValue());
         existing.setActive(rewardRule.getActive());
+        existing.setAbCohort(rewardRule.getAbCohort());
+        existing.setUpdatedAt(LocalDateTime.now());
 
         rewardRuleRepository.save(existing);
 
@@ -84,6 +88,21 @@ public class RewardRuleServiceImpl implements RewardRuleService {
         return "Reward Rule Deleted Successfully";
     }
 
+    /**
+     * Flips the active flag on a reward rule.
+     * Used by the toggle switch in the admin UI Reward Rules list.
+     */
+    public RewardRuleDto toggleRewardRule(String ruleId){
+        RewardRule rule = rewardRuleRepository.findById(ruleId);
+        if(rule == null){
+            throw new RuntimeException("Reward Rule Not Found");
+        }
+        rule.setActive(!Boolean.TRUE.equals(rule.getActive()));
+        rule.setUpdatedAt(LocalDateTime.now());
+        rewardRuleRepository.save(rule);
+        return mapToDto(rule);
+    }
+
     private RewardRuleDto mapToDto(RewardRule rule){
 
         RewardRuleDto dto = new RewardRuleDto();
@@ -97,6 +116,8 @@ public class RewardRuleServiceImpl implements RewardRuleService {
         dto.setRewardValue(rule.getRewardValue());
         dto.setActive(rule.getActive());
         dto.setCreatedAt(rule.getCreatedAt());
+        dto.setUpdatedAt(rule.getUpdatedAt());
+        dto.setAbCohort(rule.getAbCohort());
 
         return dto;
     }

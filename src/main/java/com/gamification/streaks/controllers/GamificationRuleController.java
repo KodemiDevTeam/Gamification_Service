@@ -27,6 +27,21 @@ public class GamificationRuleController {
         return gamificationRuleService.create(gamificationRule);
     }
 
+    /** Returns all gamification rules — drives the Reward Rules admin table. */
+    @GetMapping("/all")
+    public List<GamificationRuleDto> getAllRules() {
+        return gamificationRuleService.getAllRules();
+    }
+
+    /**
+     * Returns the coin conversion config rule.
+     * Drives the XP → KodeMi Coin banner at the top of the Reward Rules page.
+     */
+    @GetMapping("/coin-conversion")
+    public GamificationRuleDto getCoinConversionRule() {
+        return gamificationRuleService.getCoinConversionRule();
+    }
+
     @PutMapping("/{ruleId}")
     public List<GamificationRuleDto> updateGamificationRule(@PathVariable String ruleId, @RequestBody GamificationRule gamificationRule) {
         return gamificationRuleService.update(ruleId, gamificationRule);
@@ -35,5 +50,14 @@ public class GamificationRuleController {
     @DeleteMapping("/{ruleId}")
     public String deleteGamificationRule(@PathVariable String ruleId) {
         return gamificationRuleService.deleteGamificationRule(ruleId);
+    }
+
+    /**
+     * Toggles the enabled/disabled state of a rule.
+     * Maps to the toggle switch in the admin UI Reward Rules list.
+     */
+    @PatchMapping("/{ruleId}/toggle")
+    public GamificationRuleDto toggleRule(@PathVariable String ruleId) {
+        return gamificationRuleService.toggleRule(ruleId);
     }
 }

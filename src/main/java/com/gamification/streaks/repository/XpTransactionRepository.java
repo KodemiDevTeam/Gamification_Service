@@ -23,4 +23,14 @@ public class XpTransactionRepository {
             dynamoDBMapper.delete(xpTransaction);
         }
     }
+
+    /** Returns all XP transactions for a given user. */
+    public List<XpTransaction> findByUserId(String userId) {
+        java.util.Map<String, com.amazonaws.services.dynamodbv2.model.AttributeValue> eav = new java.util.HashMap<>();
+        eav.put(":v1", new com.amazonaws.services.dynamodbv2.model.AttributeValue().withS(userId));
+        DynamoDBScanExpression scan = new DynamoDBScanExpression()
+                .withFilterExpression("userId = :v1")
+                .withExpressionAttributeValues(eav);
+        return dynamoDBMapper.scan(XpTransaction.class, scan);
+    }
 }

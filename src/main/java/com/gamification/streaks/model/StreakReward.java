@@ -3,6 +3,9 @@ package com.gamification.streaks.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum;
+import com.gamification.streaks.enums.RewardType;
+import com.gamification.streaks.enums.StreakType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,11 +21,19 @@ public class StreakReward {
     @DynamoDBAttribute(attributeName = "streakName")
     private String streakName;
 
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "streakType")
+    private StreakType streakType;           // new: Streak Rewards table Streak Type column
+
     @DynamoDBAttribute(attributeName = "days")
     private Integer days;
 
+    @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "rewardType")
-    private String rewardType;
+    private RewardType rewardType;           // fixed: was raw String
+
+    @DynamoDBAttribute(attributeName = "usersEarning")
+    private Integer usersEarning;            // new: users earning count shown in UI table
 
     @DynamoDBAttribute(attributeName = "xpReward")
     private Integer xpReward;

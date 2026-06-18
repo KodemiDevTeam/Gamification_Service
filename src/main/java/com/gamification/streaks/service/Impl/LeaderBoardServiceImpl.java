@@ -26,6 +26,8 @@ public class LeaderBoardServiceImpl implements LeaderBoardService {
         entry.setLeaderboardId(UUID.randomUUID().toString());
         entry.setLeaderboardType(leaderBoardEntryDto.getLeaderboardType());
         entry.setUserId(leaderBoardEntryDto.getUserId());
+        entry.setUserName(leaderBoardEntryDto.getUserName());
+        entry.setUserAvatarUrl(leaderBoardEntryDto.getUserAvatarUrl());
         entry.setXpScore(leaderBoardEntryDto.getXpScore());
         entry.setRank(leaderBoardEntryDto.getRank());
         entry.setPeriodStart(leaderBoardEntryDto.getPeriodStart());
@@ -66,6 +68,8 @@ public class LeaderBoardServiceImpl implements LeaderBoardService {
 
         existing.setLeaderboardType(leaderBoardEntry.getLeaderboardType());
         existing.setUserId(leaderBoardEntry.getUserId());
+        existing.setUserName(leaderBoardEntry.getUserName());
+        existing.setUserAvatarUrl(leaderBoardEntry.getUserAvatarUrl());
         existing.setXpScore(leaderBoardEntry.getXpScore());
         existing.setRank(leaderBoardEntry.getRank());
         existing.setPeriodStart(leaderBoardEntry.getPeriodStart());
@@ -97,6 +101,8 @@ public class LeaderBoardServiceImpl implements LeaderBoardService {
         dto.setLeaderboardId(entry.getLeaderboardId());
         dto.setLeaderboardType(entry.getLeaderboardType());
         dto.setUserId(entry.getUserId());
+        dto.setUserName(entry.getUserName());
+        dto.setUserAvatarUrl(entry.getUserAvatarUrl());
         dto.setXpScore(entry.getXpScore());
         dto.setRank(entry.getRank());
         dto.setPeriodStart(entry.getPeriodStart());

@@ -1,9 +1,11 @@
 package com.gamification.streaks.enums;
 
 public enum StreakType {
-    XP,
-    BADGE,
-    STREAK,
-    LEADERBOARD,
-    REWARD
+    DAILY_LOGIN,
+    QUIZ_COMPLETION,
+    COURSE_COMPLETION,
+    LAB_COMPLETION,
+    LIVE_SESSION,
+    CHALLENGE_COMPLETION,
+    GENERAL
 }

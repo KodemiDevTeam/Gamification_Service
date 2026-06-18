@@ -11,4 +11,5 @@ public interface UserBadgeService {
     List<UserBadgeDto> getAllUserBadge();
     String updateUserBadge(String userBadgeId,UserBadge userBadge);
     String deleteUserBadge(String userBadgeId);
+    List<UserBadgeDto> getUserBadgesByUserId(String userId);
 }

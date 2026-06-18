@@ -41,4 +41,14 @@ public class RewardRuleController {
     public String deleteRewardRule(@PathVariable String ruleId) {
         return rewardRuleService.deleteRewardRule(ruleId);
     }
+
+    /**
+     * Toggles the active state of a reward rule.
+     * Maps to the toggle switch in the admin UI Reward Rules list.
+     */
+    @PatchMapping("/{ruleId}/toggle")
+    public RewardRuleDto toggleRewardRule(@PathVariable String ruleId) {
+        return rewardRuleService.toggleRewardRule(ruleId);
+    }
 }
+

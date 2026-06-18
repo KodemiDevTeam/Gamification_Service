@@ -16,4 +16,6 @@ public interface StreakRecordService {
     String updateStreak(String streakId, StreakRecord streakRecord);
 
     String deleteStreak(String streakId);
+
+    List<StreakRecordDto> getStreakRecordsByUserId(String userId);
 }

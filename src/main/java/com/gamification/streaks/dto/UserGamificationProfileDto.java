@@ -1,5 +1,6 @@
 package com.gamification.streaks.dto;
 
+import com.gamification.streaks.enums.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,11 +11,12 @@ import java.time.LocalDateTime;
 @Setter
 public class UserGamificationProfileDto {
     private String userId;
-    private String role;
+    private UserRole role;
     private Integer totalXp;
     private Integer currentLevel;
+    private Integer currentStreak;
     private Integer longestStreak;
-    private LocalDate lastActivityData;
+    private LocalDate lastActivityDate;   // fixed: was lastActivityData
     private Integer totalBadges;
     private Integer totalReward;
     private Integer coinBalance;

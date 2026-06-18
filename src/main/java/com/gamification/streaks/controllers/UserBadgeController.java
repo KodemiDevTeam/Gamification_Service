@@ -41,4 +41,9 @@ public class UserBadgeController {
     public String deleteUserBadge(@PathVariable String userBadgeId) {
         return userBadgeService.deleteUserBadge(userBadgeId);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<UserBadgeDto> getUserBadgesByUserId(@PathVariable String userId) {
+        return userBadgeService.getUserBadgesByUserId(userId);
+    }
 }

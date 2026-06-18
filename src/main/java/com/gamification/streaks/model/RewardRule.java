@@ -29,5 +29,9 @@ public class RewardRule {
     private Boolean active;
     @DynamoDBAttribute(attributeName="createdAt")
     private LocalDateTime createdAt;
+    @DynamoDBAttribute(attributeName="updatedAt")
+    private LocalDateTime updatedAt;
+    @DynamoDBAttribute(attributeName="abCohort")
+    private String abCohort;
 }
 

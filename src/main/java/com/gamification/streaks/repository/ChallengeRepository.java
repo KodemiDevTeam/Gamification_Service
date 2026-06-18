@@ -23,4 +23,14 @@ public class ChallengeRepository {
             dynamoDBMapper.delete(challenge);
         }
     }
+
+    /** Returns all challenges by their current status. */
+    public List<Challenge> findByStatus(com.gamification.streaks.enums.ChallengeStatus status) {
+        java.util.Map<String, com.amazonaws.services.dynamodbv2.model.AttributeValue> eav = new java.util.HashMap<>();
+        eav.put(":v1", new com.amazonaws.services.dynamodbv2.model.AttributeValue().withS(status.name()));
+        DynamoDBScanExpression scan = new DynamoDBScanExpression()
+                .withFilterExpression("status = :v1")
+                .withExpressionAttributeValues(eav);
+        return dynamoDBMapper.scan(Challenge.class, scan);
+    }
 }

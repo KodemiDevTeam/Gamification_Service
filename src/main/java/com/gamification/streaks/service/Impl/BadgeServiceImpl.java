@@ -1,5 +1,8 @@
 package com.gamification.streaks.service.Impl;
+
 import com.gamification.streaks.dto.BadgeDto;
+import com.gamification.streaks.enums.BadgeTier;
+import com.gamification.streaks.enums.RewardType;
 import com.gamification.streaks.model.Badge;
 import com.gamification.streaks.repository.BadgeRepository;
 import com.gamification.streaks.service.BadgeService;
@@ -25,18 +28,29 @@ public class BadgeServiceImpl implements BadgeService {
         badge.setBadgeType(badgeDto.getBadgeType());
         badge.setDescription(badgeDto.getDescription());
         badge.setIconUrl(badgeDto.getIconUrl());
+        badge.setXpRequired(badgeDto.getXpRequired());
         badge.setXpReward(badgeDto.getXpReward());
+        badge.setBadgeTier(badgeDto.getBadgeTier());
+        // Default reward type to XP if not specified (since UI shows it fixed to XP for badges)
+        badge.setRewardType(badgeDto.getRewardType() != null ? badgeDto.getRewardType() : RewardType.XP);
         badge.setEligibilityRule(badgeDto.getEligibilityRule());
         badge.setActive(badgeDto.getActive());
-        badge.setCreatedAt(badgeDto.getCreatedAt());
+        badge.setCreatedAt(badgeDto.getCreatedAt() != null ? badgeDto.getCreatedAt() : java.time.LocalDateTime.now());
         return badgeRepository.save(badge);
     }
 
     public String createBade(Badge badge){
         badge.setBadgeId(UUID.randomUUID().toString());
+        if (badge.getRewardType() == null) {
+            badge.setRewardType(RewardType.XP);
+        }
+        if (badge.getCreatedAt() == null) {
+            badge.setCreatedAt(java.time.LocalDateTime.now());
+        }
         badgeRepository.save(badge);
         return "Badge Created Successfully";
     }
+
     public BadgeDto getBadgeId(String badgeId){
         Badge badge = badgeRepository.findById(badgeId);
         if(badge == null){
@@ -63,7 +77,10 @@ public class BadgeServiceImpl implements BadgeService {
         existing.setBadgeType(badge.getBadgeType());
         existing.setDescription(badge.getDescription());
         existing.setIconUrl(badge.getIconUrl());
+        existing.setXpRequired(badge.getXpRequired());
         existing.setXpReward(badge.getXpReward());
+        existing.setBadgeTier(badge.getBadgeTier());
+        existing.setRewardType(badge.getRewardType() != null ? badge.getRewardType() : RewardType.XP);
         existing.setEligibilityRule(badge.getEligibilityRule());
         existing.setActive(badge.getActive());
         badgeRepository.save(existing);
@@ -86,7 +103,10 @@ public class BadgeServiceImpl implements BadgeService {
         dto.setBadgeType(badge.getBadgeType());
         dto.setDescription(badge.getDescription());
         dto.setIconUrl(badge.getIconUrl());
+        dto.setXpRequired(badge.getXpRequired());
         dto.setXpReward(badge.getXpReward());
+        dto.setBadgeTier(badge.getBadgeTier());
+        dto.setRewardType(badge.getRewardType());
         dto.setEligibilityRule(badge.getEligibilityRule());
         dto.setActive(badge.getActive());
         dto.setCreatedAt(badge.getCreatedAt());

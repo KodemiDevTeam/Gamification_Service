@@ -11,4 +11,5 @@ public interface ChallengeService {
     List<ChallengeDto> getAllChallenge();
     String updateChallenge(String challengeId,Challenge challenge);
     String deleteChallenge(String challengeId);
+    String softDeleteChallenge(String challengeId);
 }

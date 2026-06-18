@@ -41,4 +41,9 @@ public class XpTransactionController {
     public String deleteXpTransaction(@PathVariable String xpTransactionId) {
         return xpTransactionService.deleteXpTransaction(xpTransactionId);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<XpTransactionDto> getXpTransactionsByUserId(@PathVariable String userId) {
+        return xpTransactionService.getXpTransactionsByUserId(userId);
+    }
 }

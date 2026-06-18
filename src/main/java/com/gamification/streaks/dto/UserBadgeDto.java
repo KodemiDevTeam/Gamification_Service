@@ -10,6 +10,10 @@ public class UserBadgeDto {
     private String userId;
     private String badgeId;
     private String badgeName;
-    private LocalDateTime createdData;
+    private String badgeIconUrl;
     private Integer xpAwarded;
+    private String awardedBy;
+    private LocalDateTime createdAt;     // fixed: was createdData
+    private LocalDateTime revokedAt;
+    private String revokeReason;
 }

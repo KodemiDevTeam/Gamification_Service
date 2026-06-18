@@ -23,4 +23,14 @@ public class UserBadgeRepository {
             dynamoDBMapper.delete(userBadge);
         }
     }
+
+    /** Returns all badges for a given user. */
+    public List<UserBadge> findByUserId(String userId) {
+        java.util.Map<String, com.amazonaws.services.dynamodbv2.model.AttributeValue> eav = new java.util.HashMap<>();
+        eav.put(":v1", new com.amazonaws.services.dynamodbv2.model.AttributeValue().withS(userId));
+        DynamoDBScanExpression scan = new DynamoDBScanExpression()
+                .withFilterExpression("userId = :v1")
+                .withExpressionAttributeValues(eav);
+        return dynamoDBMapper.scan(UserBadge.class, scan);
+    }
 }

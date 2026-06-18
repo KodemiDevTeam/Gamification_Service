@@ -23,4 +23,28 @@ public class LeaderBoardRepository {
             dynamoDBMapper.delete(leaderBoardEntry);
         }
     }
+
+    /** Returns entries for a specific leaderboard type. */
+    public List<LeaderBoardEntry> findByLeaderboardType(com.gamification.streaks.enums.LeaderBoardType type) {
+        java.util.Map<String, com.amazonaws.services.dynamodbv2.model.AttributeValue> eav = new java.util.HashMap<>();
+        eav.put(":v1", new com.amazonaws.services.dynamodbv2.model.AttributeValue().withS(type.name()));
+        DynamoDBScanExpression scan = new DynamoDBScanExpression()
+                .withFilterExpression("leaderboardType = :v1")
+                .withExpressionAttributeValues(eav);
+        return dynamoDBMapper.scan(LeaderBoardEntry.class, scan);
+    }
+
+    /** Returns top N entries sorted by xpScore descending. */
+    public List<LeaderBoardEntry> findTopN(int n) {
+        List<LeaderBoardEntry> all = findAll();
+        all.sort((a, b) -> {
+            int scoreA = a.getXpScore() != null ? a.getXpScore() : 0;
+            int scoreB = b.getXpScore() != null ? b.getXpScore() : 0;
+            return Integer.compare(scoreB, scoreA); // descending
+        });
+        if (all.size() > n) {
+            return all.subList(0, n);
+        }
+        return all;
+    }
 }

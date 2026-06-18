@@ -16,4 +16,6 @@ public class RewardRuleDto {
     private Integer rewardValue;
     private Boolean active;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private String abCohort;
 }

@@ -9,6 +9,8 @@ public interface RewardRuleService {
     String createRewardRule(RewardRuleDto rewardRuleDto);
     String create(RewardRule rewardRule);
     List<RewardRuleDto> getAllRewardRule();
-    String updateRewardRule(String ruleId,RewardRule rewardRule);
+    String updateRewardRule(String ruleId, RewardRule rewardRule);
     String deleteRewardRule(String ruleId);
+    RewardRuleDto toggleRewardRule(String ruleId);
 }
+

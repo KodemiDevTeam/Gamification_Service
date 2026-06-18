@@ -1,5 +1,6 @@
 package com.gamification.streaks.service.Impl;
 import com.gamification.streaks.dto.UserGamificationProfileDto;
+import com.gamification.streaks.enums.XpSource;
 import com.gamification.streaks.model.UserGamificationProfile;
 import com.gamification.streaks.repository.UserGamificationProfileRepository;
 import com.gamification.streaks.service.UserGamificationProfileService;
@@ -25,8 +26,9 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         profile.setRole(dto.getRole());
         profile.setTotalXp(dto.getTotalXp());
         profile.setCurrentLevel(dto.getCurrentLevel());
+        profile.setCurrentStreak(dto.getCurrentStreak());
         profile.setLongestStreak(dto.getLongestStreak());
-        profile.setLastActivityData(dto.getLastActivityData());
+        profile.setLastActivityDate(dto.getLastActivityDate());
         profile.setTotalBadges(dto.getTotalBadges());
         profile.setTotalReward(dto.getTotalReward());
         profile.setCoinBalance(dto.getCoinBalance());
@@ -63,8 +65,9 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         existing.setRole(userGamificationProfile.getRole());
         existing.setTotalXp(userGamificationProfile.getTotalXp());
         existing.setCurrentLevel(userGamificationProfile.getCurrentLevel());
+        existing.setCurrentStreak(userGamificationProfile.getCurrentStreak());
         existing.setLongestStreak(userGamificationProfile.getLongestStreak());
-        existing.setLastActivityData(userGamificationProfile.getLastActivityData());
+        existing.setLastActivityDate(userGamificationProfile.getLastActivityDate());
         existing.setTotalBadges(userGamificationProfile.getTotalBadges());
         existing.setTotalReward(userGamificationProfile.getTotalReward());
         existing.setCoinBalance(userGamificationProfile.getCoinBalance());
@@ -86,8 +89,9 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         dto.setRole(profile.getRole());
         dto.setTotalXp(profile.getTotalXp());
         dto.setCurrentLevel(profile.getCurrentLevel());
+        dto.setCurrentStreak(profile.getCurrentStreak());
         dto.setLongestStreak(profile.getLongestStreak());
-        dto.setLastActivityData(profile.getLastActivityData());
+        dto.setLastActivityDate(profile.getLastActivityDate());
         dto.setTotalBadges(profile.getTotalBadges());
         dto.setTotalReward(profile.getTotalReward());
         dto.setCoinBalance(profile.getCoinBalance());
@@ -131,10 +135,10 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         transaction.setXpTransactionId(UUID.randomUUID().toString());
         transaction.setUserId(userId);
         transaction.setXpAmount(-requiredXp);
-        transaction.setXpSource("XP_TO_COIN_CONVERSION");
+        transaction.setXpSource(XpSource.COIN_CONVERSION);
         transaction.setReferenceId(profile.getUserId());
         transaction.setDescription("Converted " + requiredXp + " XP into " + coins + " Coins");
-        transaction.setCreatedAt(java.time.LocalDateTime.now().toString());
+        transaction.setCreatedAt(java.time.LocalDateTime.now());
         xpTransactionRepository.save(transaction);
 
         return "Converted " + requiredXp + " XP to " + coins + " Coins Successfully";
@@ -158,11 +162,11 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         transaction.setXpTransactionId(UUID.randomUUID().toString());
         transaction.setUserId(userId);
         transaction.setXpAmount(0);
-        transaction.setXpSource("COIN_REDEMPTION");
+        transaction.setXpSource(XpSource.COIN_REDEMPTION);
         transaction.setReferenceId(profile.getUserId());
         double discount = coins * 10.0;
         transaction.setDescription("Redeemed " + coins + " Coins for ₹" + discount + " discount");
-        transaction.setCreatedAt(java.time.LocalDateTime.now().toString());
+        transaction.setCreatedAt(java.time.LocalDateTime.now());
         xpTransactionRepository.save(transaction);
 
         return discount;

@@ -41,4 +41,9 @@ public class StreakRecordController {
     public String deleteStreak(@PathVariable String streakId) {
         return streakRecordService.deleteStreak(streakId);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<StreakRecordDto> getStreakRecordsByUserId(@PathVariable String userId) {
+        return streakRecordService.getStreakRecordsByUserId(userId);
+    }
 }

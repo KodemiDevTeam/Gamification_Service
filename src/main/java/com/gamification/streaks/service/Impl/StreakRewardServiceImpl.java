@@ -25,10 +25,12 @@ public class StreakRewardServiceImpl implements StreakRewardService {
         StreakReward reward = new StreakReward();
         reward.setStreakRewardId(UUID.randomUUID().toString());
         reward.setStreakName(dto.getStreakName());
+        reward.setStreakType(dto.getStreakType());
         reward.setDays(dto.getDays());
         reward.setRewardType(dto.getRewardType());
         reward.setXpReward(dto.getXpReward());
         reward.setCoinReward(dto.getCoinReward());
+        reward.setUsersEarning(dto.getUsersEarning() != null ? dto.getUsersEarning() : 0);
         reward.setApplicableOn(dto.getApplicableOn());
         reward.setCouponExpiry(dto.getCouponExpiry());
         reward.setMinRedemptionValue(dto.getMinRedemptionValue());
@@ -81,10 +83,12 @@ public class StreakRewardServiceImpl implements StreakRewardService {
         }
 
         existing.setStreakName(streakReward.getStreakName());
+        existing.setStreakType(streakReward.getStreakType());
         existing.setDays(streakReward.getDays());
         existing.setRewardType(streakReward.getRewardType());
         existing.setXpReward(streakReward.getXpReward());
         existing.setCoinReward(streakReward.getCoinReward());
+        existing.setUsersEarning(streakReward.getUsersEarning());
         existing.setApplicableOn(streakReward.getApplicableOn());
         existing.setCouponExpiry(streakReward.getCouponExpiry());
         existing.setMinRedemptionValue(streakReward.getMinRedemptionValue());
@@ -109,10 +113,12 @@ public class StreakRewardServiceImpl implements StreakRewardService {
         StreakRewardDto dto = new StreakRewardDto();
         dto.setStreakRewardId(reward.getStreakRewardId());
         dto.setStreakName(reward.getStreakName());
+        dto.setStreakType(reward.getStreakType());
         dto.setDays(reward.getDays());
         dto.setRewardType(reward.getRewardType());
         dto.setXpReward(reward.getXpReward());
         dto.setCoinReward(reward.getCoinReward());
+        dto.setUsersEarning(reward.getUsersEarning());
         dto.setApplicableOn(reward.getApplicableOn());
         dto.setCouponExpiry(reward.getCouponExpiry());
         dto.setMinRedemptionValue(reward.getMinRedemptionValue());
