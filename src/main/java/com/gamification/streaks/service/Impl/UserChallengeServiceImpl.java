@@ -1,6 +1,7 @@
 package com.gamification.streaks.service.Impl;
 
 import com.gamification.streaks.dto.UserChallengeDto;
+import com.gamification.streaks.enums.XpSource;
 import com.gamification.streaks.model.*;
 import com.gamification.streaks.repository.*;
 import com.gamification.streaks.service.UserChallengeService;
@@ -105,10 +106,10 @@ public class UserChallengeServiceImpl implements UserChallengeService {
                     transaction.setXpTransactionId(UUID.randomUUID().toString());
                     transaction.setUserId(userId);
                     transaction.setXpAmount(rewardXp);
-                    transaction.setXpSource("CHALLENGE_COMPLETED");
+                    transaction.setXpSource(XpSource.CHALLENGE_COMPLETION);
                     transaction.setReferenceId(challengeId);
                     transaction.setDescription("Completed challenge: " + challenge.getChallengeName());
-                    transaction.setCreatedAt(LocalDateTime.now().toString());
+                    transaction.setCreatedAt(LocalDateTime.now());
                     xpTransactionRepository.save(transaction);
                 }
 
@@ -119,7 +120,7 @@ public class UserChallengeServiceImpl implements UserChallengeService {
                     userBadge.setUserId(userId);
                     userBadge.setBadgeId(UUID.randomUUID().toString()); // Mock badgeId mapping
                     userBadge.setBadgeName(challenge.getRewardBadge());
-                    userBadge.setCreatedData(LocalDateTime.now());
+                    userBadge.setCreatedAt(LocalDateTime.now());
                     userBadge.setXpAwarded(rewardXp);
                     userBadgeRepository.save(userBadge);
 
