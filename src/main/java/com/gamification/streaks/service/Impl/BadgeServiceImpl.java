@@ -1,7 +1,6 @@
 package com.gamification.streaks.service.Impl;
 
 import com.gamification.streaks.dto.BadgeDto;
-import com.gamification.streaks.enums.BadgeTier;
 import com.gamification.streaks.enums.RewardType;
 import com.gamification.streaks.model.Badge;
 import com.gamification.streaks.repository.BadgeRepository;
