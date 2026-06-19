@@ -36,6 +36,8 @@ public class UserGamificationProfile {
     private Integer totalReward;
     @DynamoDBAttribute(attributeName = "coinBalance")
     private Integer coinBalance;
+    @DynamoDBAttribute(attributeName = "lifetimeXp")
+    private Integer lifetimeXp;
     @DynamoDBAttribute(attributeName = "createdAt")
     private LocalDateTime createdAt;
     @DynamoDBAttribute(attributeName = "updatedAt")

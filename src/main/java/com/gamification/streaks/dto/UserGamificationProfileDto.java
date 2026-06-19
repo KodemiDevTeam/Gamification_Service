@@ -20,6 +20,7 @@ public class UserGamificationProfileDto {
     private Integer totalBadges;
     private Integer totalReward;
     private Integer coinBalance;
+    private Integer lifetimeXp;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

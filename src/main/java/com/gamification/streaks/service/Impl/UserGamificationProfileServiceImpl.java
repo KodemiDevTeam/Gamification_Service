@@ -25,6 +25,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         profile.setUserId(UUID.randomUUID().toString());
         profile.setRole(dto.getRole());
         profile.setTotalXp(dto.getTotalXp());
+        profile.setLifetimeXp(dto.getLifetimeXp() != null ? dto.getLifetimeXp() : dto.getTotalXp());
         profile.setCurrentLevel(dto.getCurrentLevel());
         profile.setCurrentStreak(dto.getCurrentStreak());
         profile.setLongestStreak(dto.getLongestStreak());
@@ -38,6 +39,9 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
     }
     public String createUserGamificationProfile(UserGamificationProfile userGamificationProfile){
         userGamificationProfile.setUserId(UUID.randomUUID().toString());
+        if (userGamificationProfile.getLifetimeXp() == null) {
+            userGamificationProfile.setLifetimeXp(userGamificationProfile.getTotalXp() != null ? userGamificationProfile.getTotalXp() : 0);
+        }
         userGamificationProfileRepository.save(userGamificationProfile);
         return "User Gamification Profile Created Successfully";
     }
@@ -71,6 +75,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         existing.setTotalBadges(userGamificationProfile.getTotalBadges());
         existing.setTotalReward(userGamificationProfile.getTotalReward());
         existing.setCoinBalance(userGamificationProfile.getCoinBalance());
+        existing.setLifetimeXp(userGamificationProfile.getLifetimeXp());
         existing.setUpdatedAt(userGamificationProfile.getUpdatedAt());
         userGamificationProfileRepository.save(existing);
         return "User Gamification Profile Updated Successfully";
@@ -80,7 +85,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         if(profile == null){
             throw new RuntimeException("User Gamification Profile Not Found");
         }
-        userGamificationProfileRepository.delete(String.valueOf(profile));
+        userGamificationProfileRepository.delete(profile.getUserId());
         return "User Gamification Profile Deleted Successfully";
     }
     private UserGamificationProfileDto mapToDto(UserGamificationProfile profile){
@@ -95,6 +100,7 @@ public class UserGamificationProfileServiceImpl implements UserGamificationProfi
         dto.setTotalBadges(profile.getTotalBadges());
         dto.setTotalReward(profile.getTotalReward());
         dto.setCoinBalance(profile.getCoinBalance());
+        dto.setLifetimeXp(profile.getLifetimeXp());
         dto.setCreatedAt(profile.getCreatedAt());
         dto.setUpdatedAt(profile.getUpdatedAt());
         return dto;

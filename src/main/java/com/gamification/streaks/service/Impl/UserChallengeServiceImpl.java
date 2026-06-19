@@ -98,6 +98,7 @@ public class UserChallengeServiceImpl implements UserChallengeService {
                 int rewardXp = challenge.getRewardXP() != null ? challenge.getRewardXP() : 0;
                 if (rewardXp > 0) {
                     profile.setTotalXp((profile.getTotalXp() != null ? profile.getTotalXp() : 0) + rewardXp);
+                    profile.setLifetimeXp((profile.getLifetimeXp() != null ? profile.getLifetimeXp() : 0) + rewardXp);
                     profile.setUpdatedAt(LocalDateTime.now());
                     userGamificationProfileRepository.save(profile);
 
